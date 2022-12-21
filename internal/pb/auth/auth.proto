@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option go_package = "universe-auth/internal/auth/pb/auth";
+package auth;
+
+service Auth {
+    rpc Login (LoginRequest) returns (LoginResponse){}
+    rpc Registration(RegistrationRequest) returns(RegistrationResponse){}
+}
+
+
+message RegistrationRequest {
+    string email =1;
+    string password = 2;
+    string username = 3;
+}
+
+message RegistrationResponse{
+    string Email = 1;
+    string UserName = 2;
+    string Token= 3;
+}
+
+message LoginRequest {
+    string email =1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string Email = 1;
+    string UserName = 2;
+    string Token= 3;
+} 
+
+message ValidateRequest{
+    string Token  =1;
+}
+
+message ValidateResponse{
+    bool IsValid = 2;
+}
+
+//protoc --go_out=. --go_opt=paths=source_relative     --go-grpc_out=. --go-grpc_opt=paths=source_relative     auth.proto
+//protoc --go_out=. --go_opt=paths=source_relative     --go-grpc_out=. --go-grpc_opt=module=universe-auth/internal/auth/pb/auth      auth.proto

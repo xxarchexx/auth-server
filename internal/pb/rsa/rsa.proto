@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "universe-auth/internal/auth/pb/rsa";
+package rsa;
+
+service RSA {
+    rpc GetPublicKey (PublicKeyRequest) returns (PublicKeyResponse){}  
+}
+
+message PublicKeyResponse {
+    string key =1;    
+}
+
+message PublicKeyRequest {   
+} 
+
+
+
+//protoc --go_out=. --go_opt=paths=source_relative     --go-grpc_out=. --go-grpc_opt=paths=source_relative     rsa.proto
+//protoc --go_out=. --go_opt=paths=source_relative     --go-grpc_out=. --go-grpc_opt=module=universe-auth/internal/auth/pb/auth      auth.proto

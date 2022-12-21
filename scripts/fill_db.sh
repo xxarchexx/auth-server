@@ -1,0 +1,1 @@
+psql 'postgresql://root:root@localhost:5432/auth?sslmode=disable' -f fixtures-data.sql
